@@ -10,11 +10,13 @@
             </keep-alive>
             <router-view  v-if="!$route.meta.keepAlive" class="router-view"></router-view>
         </div>
+        <explain></explain>
     </div>
 </template>
 <script>
 import { mapState, mapActions, mapMutations } from 'vuex';
 import Loading from '../components/Loading'
+import Explain from './components/Explain'
 import  "../style/reset.scss";
 import  "../style/style.scss";
 
@@ -26,7 +28,7 @@ export default {
         }
     },
     components:{
-        Loading
+        Loading, Explain
     },
     computed:{
         ...mapState(['isLoading'])

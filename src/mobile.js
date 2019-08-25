@@ -11,9 +11,19 @@ import vueCookie from 'vue-cookie'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import ajaxInterceptors from './common/ajaxInterceptors'
+import VueAMap from 'vue-amap';
 
-
+Vue.use(VueAMap);
 Vue.use(vueCookie)
+// 初始化vue-amap
+VueAMap.initAMapApiLoader({
+    // 高德的key
+    key: 'YOUR_KEY',
+    // 插件集合
+    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+    // 高德 sdk 版本，默认为 1.4.4
+    v: '1.4.4'
+});
 
 //验证插件
 Validator.extend('mobile', {
@@ -73,17 +83,16 @@ router.afterEach(function (to) {
     store.commit("UPDATE", { key: 'isLoading', val: false })
 })
 
-
-
 // 刷新操作需检测，并恢复登录数据
-if(Vue.cookie.get('x-session-token')){
-    store.dispatch("setUser").finally(data=>{
-        startVue();
-    })
-}else{
-    startVue();
-}
+// if(Vue.cookie.get('x-session-token')){
+//     store.dispatch("setUser").finally(data=>{
+//         startVue();
+//     })
+// }else{
+//     startVue();
+// }
 
+startVue();
 function startVue(){
     new Vue({
         router,
