@@ -10,7 +10,7 @@
             </keep-alive>
             <router-view  v-if="!$route.meta.keepAlive" class="router-view"></router-view>
         </div>
-        <explain></explain>
+        <explain v-if="$route.meta.explain"></explain>
     </div>
 </template>
 <script>

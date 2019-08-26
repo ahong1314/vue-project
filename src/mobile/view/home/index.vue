@@ -25,7 +25,7 @@
                 icon="van-icon van-icon-point-gift">首页</van-tabbar-item>
             <van-tabbar-item 
                 replace
-                to="/home"
+                to="/order"
                 icon="van-icon van-icon-todo-list">订单</van-tabbar-item>
         </van-tabbar>
         <div class="btn">
