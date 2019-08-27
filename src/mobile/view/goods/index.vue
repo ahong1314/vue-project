@@ -14,13 +14,13 @@
         <div class="centent" flex="box:last">
             <div class="price">
                 <div>
-                   ¥ <span class="num">780</span> <span class="tuan">5人团</span>
+                   ¥ <span class="num">{{good.price}}</span> <span class="tuan">{{good.people}}人团</span>
                 </div> 
-                <s>原价¥4，453</s>
+                <s>原价¥{{good.oldPrice}}</s>
             </div>
             <div class="time" flex="main:center dir:top">
-                <div>距离结束仅剩6天</div> 
-                <van-count-down class="count-down" :time="time">
+                <div>{{dateObj.msg}}</div> 
+                <van-count-down class="count-down" :time="dateObj.time">
                     <template v-slot="timeData">
                         <span class="item">{{ timeData.days }}</span>
                         <span class="item">{{ timeData.hours }}</span>
@@ -30,10 +30,10 @@
 
             </div>
         </div>
-        <h3 class="car-name">体验卡体验卡体验卡体验卡体验卡</h3>
+        <h3 class="car-name">{{ good.name }}</h3>
         <div class="car-other" flex="box:mean">
-            <div>已拼：34</div>
-            <div>库存：531</div>
+            <div>已拼：{{member}}</div>
+            <div>库存：{{ good.stock }}</div>
             <div>每人限购1件</div>
         </div>
         <dir class="play">
@@ -53,23 +53,13 @@
                 <span @click="store=true">查看更多 ></span>
             </div>
             <div class="list">
-                <div class="item"  flex="main:justify cross:center">
+                <div class="item"  v-for="(item, index) in rows" :key="index" flex="main:justify cross:center">
                     <div class="user" flex="cross:center">
-                        <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                        <span>hank**</span>
+                        <div class="imgbox"><img :src="item.member[0].headimgurl" alt=""></div>
+                        <span>{{item.member[0].nickname}}</span>
                     </div>
                     <div class="add" flex>
-                        <div>还差<span>4人</span>成团</div>
-                        <div class="btn">拼TA的团</div>
-                    </div>
-                </div>
-               <div class="item"  flex="main:justify cross:center">
-                    <div class="user" flex="cross:center">
-                        <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                        <span>hank**</span>
-                    </div>
-                    <div class="add" flex>
-                        <div>还差<span>4人</span>成团</div>
+                        <div>还差<span>{{5 - item.member.length}}人</span>成团</div>
                         <div class="btn">拼TA的团</div>
                     </div>
                 </div>
@@ -83,15 +73,16 @@
         </div>
         <Qrshore />
         <div class="bay" flex="box:first">
-            <div class="bus" flex="dir:top main:center cross:center">
+            
+            <div class="bus"  @click="UPDATE({key: 'store', val: true})"  flex="dir:top main:center cross:center">
                 <span class="van-icon van-icon-shop"></span>
                 <p>商家</p>
             </div>
             <router-link to="/confirm?type=2" tag="div">
-                ¥4.468 单买
+                ¥{{good.oldPrice}} 单买
             </router-link>
             <router-link to="/confirm?type=2" tag="div">
-                ¥780 开团
+                ¥{{good.price}} 开团
             </router-link>
         </div>
         <div class="activity store" v-if="store" flex="main:center cross:center">
@@ -99,53 +90,13 @@
                 <div class="close van-icon van-icon-cross" @click="store = false" flex="main:center cross:center"></div>
                 <h3>正在拼团</h3>
                 <div class="list">
-                    <div class="item"  flex="main:justify cross:center">
+                   <div class="item"  v-for="(item, index) in rows" :key="index" flex="main:justify cross:center">
                         <div class="user" flex="cross:center">
-                            <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                            <span>hank**</span>
+                            <div class="imgbox"><img :src="item.member[0].headimgurl" alt=""></div>
+                            <span>{{item.member[0].nickname}}</span>
                         </div>
                         <div class="add" flex>
-                            <div>还差<span>4人</span>成团</div>
-                            <div class="btn">拼TA的团</div>
-                        </div>
-                    </div>
-                    <div class="item"  flex="main:justify cross:center">
-                        <div class="user" flex="cross:center">
-                            <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                            <span>hank**</span>
-                        </div>
-                        <div class="add" flex>
-                            <div>还差<span>4人</span>成团</div>
-                            <div class="btn">拼TA的团</div>
-                        </div>
-                    </div>
-                   <div class="item"  flex="main:justify cross:center">
-                        <div class="user" flex="cross:center">
-                            <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                            <span>hank**</span>
-                        </div>
-                        <div class="add" flex>
-                            <div>还差<span>4人</span>成团</div>
-                            <div class="btn">拼TA的团</div>
-                        </div>
-                    </div>
-                   <div class="item"  flex="main:justify cross:center">
-                        <div class="user" flex="cross:center">
-                            <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                            <span>hank**</span>
-                        </div>
-                        <div class="add" flex>
-                            <div>还差<span>4人</span>成团</div>
-                            <div class="btn">拼TA的团</div>
-                        </div>
-                    </div>
-                   <div class="item"  flex="main:justify cross:center">
-                        <div class="user" flex="cross:center">
-                            <div class="imgbox"><img src="../../style/img/home1.jpg" alt=""></div>
-                            <span>hank**</span>
-                        </div>
-                        <div class="add" flex>
-                            <div>还差<span>4人</span>成团</div>
+                            <div>还差<span>{{5 - item.member.length}}人</span>成团</div>
                             <div class="btn">拼TA的团</div>
                         </div>
                     </div>
@@ -171,7 +122,7 @@ import {
     NavBar,
     CountDown
 } from "vant";
-
+import { mapState, mapActions, mapMutations } from 'vuex';
 import Qrshore from "../../components/Qrshore"
 export default {
     components: {
@@ -200,25 +151,58 @@ export default {
                 thumb: [
                     "https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg",
                     "https://img.yzcdn.cn/public_files/2017/10/24/1791ba14088f9c2be8c610d0a6cc0f93.jpeg"
-                ]
+                ],
+
             },
-            time: 30 * 60 * 60 * 1000,
-            store: false
+            store: false,
+            member: 1,
+            rows:[]
         };
     },
-    methods: {
+    created(){
+        this.getOrder()
+    },
+    methods:{
+        ...mapMutations(['UPDATE']),
         formatPrice() {
             return "¥" + (this.goods.price / 100).toFixed(2);
         },
-
-        onClickCart() {
-            this.$router.push("cart");
-        },
-
-        sorry() {
-            Toast("暂无后续逻辑~");
+        getOrder(){
+            this.$http.get("/json/order.json").then(({data})=>{
+                data = data.data;
+                this.member = data.member;
+                this.rows = data.rows;
+            })
+        }
+    },
+    computed:{
+        ...mapState(['good']),
+        dateObj(){
+            let endTime = new Date(this.good.endTime).getTime();
+            let startTime = new Date(this.good.startTime).getTime();
+            let now = new Date().getTime();
+            let obj = {
+                open: 0,
+                msg: '',
+                time: 0,
+            }
+            if(now < startTime){
+                obj.time =  startTime - now;
+                let days = Math.ceil(obj.time/(24*60*60*1000))
+                obj.msg = `距离开始还有${days}天`
+                
+            }else if(now > startTime  && now < endTime){
+                obj.time =  endTime - now;
+                let days = Math.ceil(obj.time/(24*60*60*1000))
+                obj.msg = `距离结束仅剩${days}天`;
+                obj.open = 1;
+            }else if(now > endTime){
+                obj.msg = `活动已结束`;
+            }
+            return obj;
         }
     }
+
 };
 </script>
 

@@ -19,12 +19,12 @@
         <div class="activity store" v-if="store" flex="main:center cross:center">
             <div class="box">
                 <div class="close van-icon van-icon-cross" @click="update('store', false)" flex="main:center cross:center"></div>
-                <div class="item"><span>主办单位：</span>歌灵啊我if啊你付完费</div>
+                <div class="item"><span>主办单位：</span>水胭脂产后恢复健康管理中心</div>
                 <div class="item" flex="main:justify cross:center">
-                    <div><span>商家地址：</span>歌灵啊我if啊你付完费</div> 
+                    <div><span>商家地址：</span>重庆重庆市开县九龙路</div> 
                     <span class="address"> | <span class="van-icon van-icon-map-marked"></span></span>
                 </div>
-                <div class="item"><span>客服电话：</span>1313241421</div>
+                <div class="item"><span>客服电话：</span><a href="tel://13896976374">13896976374</a></div>
             </div>
         </div>      
         <el-amap vid="amapDemo" :zoom="zoom" :center="center">
@@ -44,11 +44,19 @@ export default {
             list: [
                 {
                     name: '活动商品',
-                    text: '商品一：体验卡'
+                    text: '商品一：水胭脂产后恢复全面体验特价卡'
                 },
                 {
                     name: '活动时间',
-                    text: '商品一：体验卡商品一：<span>体验卡商</span>品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡'
+                    text: '2019年09月01日 00:00 - 2019年09月31日 23:59'
+                },
+                {
+                    name: '主办单位',
+                    text: '<span>水胭脂产后恢复健康管理中心</span>'
+                },
+                {
+                    name: '活动说明',
+                    text: '选择商品，进行开团或参与拼团，提交订单成功后邀请好友拼团，达到人数即为拼团成功'
                 }
             ]
         };

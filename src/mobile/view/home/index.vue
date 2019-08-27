@@ -9,12 +9,12 @@
         <div class="list">
             <router-link tag="div" to="/goods" class="item"  flex="box:first">
                 <div class="imgbox">
-                    <img src="../../style/img/home1.jpg"/>
+                    <img :src="good.imgUrl"/>
                 </div>
                 <div class="info">
-                    <p class="c-red"><span>¥780 </span>  5人团</p>
-                    <p class="price">原价 ¥4,468 | 库存531</p>
-                    <p>体验卡</p>
+                    <p class="c-red"><span>¥ {{good.price}} </span>  {{good.people}}人团</p>
+                    <p class="price">原价 ¥{{good.oldPrice}} | 库存{{good.stock}}</p>
+                    <p>{{good.name}}</p>
                 </div>
             </router-link>
         </div>
@@ -42,6 +42,9 @@ import {
     TabbarItem
 } from "vant";
 Vue.use(Swipe).use(SwipeItem).use(Tabbar).use(TabbarItem)
+import { mapState, mapActions, mapMutations } from 'vuex';
+
+
 export default {
 
     data() {
@@ -73,6 +76,9 @@ export default {
         sorry() {
             Toast("暂无后续逻辑~");
         }
+    },
+    computed:{
+        ...mapState(['good'])
     }
 };
 </script>
