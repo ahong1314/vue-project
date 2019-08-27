@@ -17,8 +17,8 @@
 import { mapState, mapActions, mapMutations } from 'vuex';
 import Loading from '../components/Loading'
 import Explain from './components/Explain'
-import  "../style/reset.scss";
-import  "../style/style.scss";
+import  "./style/reset.scss";
+import  "./style/style.scss";
 
 export default {
     name: 'HelloWorld',

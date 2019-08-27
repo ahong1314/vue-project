@@ -1,13 +1,13 @@
 <template>
     <div class="explain">
-        <div>
-            <div class="bubble" flex="main:center cross:center" @click="activity = true">活动<br/>说明</div>
-            <div class="bubble" flex="main:center cross:center" @click="store = true">联系<br/>商家</div>
+        <div v-if="!$route.meta.expNav">
+            <div class="bubble" flex="main:center cross:center" @click="update('activity', true)">活动<br/>说明</div>
+            <div class="bubble" flex="main:center cross:center" @click="update('store', true)">联系<br/>商家</div>
         </div>
         <div class="activity" v-if="activity">
             <div class="name" flex="main:justify">
                 <div flex="cross:center">活动说明</div>
-                <span @click="activity = false" flex="cross:center" class="van-icon van-icon-cross"></span>
+                <span @click="update('activity', false)" flex="cross:center" class="van-icon van-icon-cross"></span>
             </div>
             <div class="list">
                 <div class="item" v-for="(item, index) in list" :key="index">
@@ -18,7 +18,7 @@
         </div>  
         <div class="activity store" v-if="store" flex="main:center cross:center">
             <div class="box">
-                <div class="close van-icon van-icon-cross" @click="store = false" flex="main:center cross:center"></div>
+                <div class="close van-icon van-icon-cross" @click="update('store', false)" flex="main:center cross:center"></div>
                 <div class="item"><span>主办单位：</span>歌灵啊我if啊你付完费</div>
                 <div class="item" flex="main:justify cross:center">
                     <div><span>商家地址：</span>歌灵啊我if啊你付完费</div> 
@@ -33,6 +33,9 @@
 </template>
 
 <script>
+
+import { mapState, mapMutations } from 'vuex';
+
 export default {
     data() {
         return {
@@ -47,15 +50,26 @@ export default {
                     name: '活动时间',
                     text: '商品一：体验卡商品一：<span>体验卡商</span>品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡商品一：体验卡'
                 }
-            ],
-            activity: false,
-            store: false
+            ]
         };
     },
     methods:{
+        ...mapMutations(['UPDATE']),
         tab(index, item){
             this.active = index;
             this.activeCode = item.navs[0].code;
+        },
+        update(key, val){
+            this.UPDATE({key: key, val: val})
+        }
+    },
+    computed:{
+        ...mapState(['activity', 'store'])
+    },
+    watch:{
+        '$route'(){
+            this.update('activity', false)
+            this.update('store', false)
         }
     }
 };

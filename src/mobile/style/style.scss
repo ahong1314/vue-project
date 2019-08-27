@@ -1,23 +1,4 @@
-.van-cell{
-    padding-right: 10px;
-    .van-field__body input{ 
-        line-height:24px ;
-    }
-    .van-cell__title{
-        min-width: 80px;
-        text-align: right;
-    }
-    .van-cell__value input{
-        outline-style: none;
-        -webkit-appearance: none;
-        vertical-align: middle;
-        background: transparent;
-        display: block;
-        width: 100%;
-        border: 1px solid transparent;
-        padding-left: 5px;
-    }
-}
+
 #app{
     .error-info{
         height: 50px;

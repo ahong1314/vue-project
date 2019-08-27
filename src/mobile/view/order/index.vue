@@ -11,7 +11,7 @@
                         <div class="text" flex="dir:top main:justify">
                             <div>体验卡</div>
                             <div flex="main:justify">
-                                <div>¥780 <s>¥7448</s></div>
+                                <div>¥780 <s style="color:#ccc">¥4468</s></div>
                                 <div>x1</div>
                             </div>
                         </div>
@@ -19,8 +19,8 @@
                     <div class="status" flex="dir:right">
                         <div>未领取 | <span class="c-red">拼团中</span></div>
                     </div>
-                   <div class="total" flex="dir:right">
-                        <div flex>合计 | <span  class="c-red">¥780</span> <div class="btn">去分享</div></div>
+                   <div class="total" flex="dir:right cross:center">
+                        <div flex="cross:center">合计 :  <span  class="c-red">  ¥780 </span>  <div class="btn">去分享</div></div>
                     </div>
                 </div>
             </van-tab>
@@ -99,20 +99,24 @@ export default {
             width: 6.85rem;
             height: 4.7rem;
             background-color: #fff;
-            margin: 1em auto;
+            margin: .5rem auto;
             border: 1px solid #ddd;
             border-radius: 4px;
             text-align: left;
-            padding: 1em;
+            padding: 0 .3rem;
+            >p{
+                height: .8rem;
+                line-height: .8rem;
+            }
             .imgtext{
                 background: #f9f9f9;
-                padding: .8em;
+                padding: .26rem;
                 .text{
-                    padding-left: 1em;
+                    padding-left: .4rem;
                 }
             }
             .imgbox{
-                height: 1.7rem;
+                height: 1.6rem;
                 img{
                     height: 100%;
                 }
@@ -121,7 +125,22 @@ export default {
                 color: red;
             }
             .status{
-
+                height: .8rem;
+                line-height: .8rem;
+                border-bottom: 1px dashed #ccc;
+            }
+            .total{
+                height: .9rem;
+                span{
+                    margin: 0 .2rem;
+                }
+                .btn{
+                    background: #4d4d4d;
+                    color: #fff;
+                    padding: .12rem .15rem;
+                    border-radius: 4px;
+                    line-height: 1;
+                }
             }
         }
     }

@@ -50,6 +50,13 @@ const routes = [
         meta: {
             title: '商品详情'
         }
+    },
+    {
+        name: 'confirm',
+        component: () => import('./view/confirm'),
+        meta: {
+            title: '确认订单', explain: true , expNav: true
+        }
     }
 ]
 routes.forEach(route => {

@@ -7,7 +7,7 @@
         </van-swipe>
         <p class="title">全部商品</p>
         <div class="list">
-            <router-link tag="div" to="/goods" class="item"  flex="box:first">
+            <div class="item" flex="box:first">
                 <div class="imgbox">
                     <img src="../../style/img/home1.jpg"/>
                 </div>
@@ -16,7 +16,7 @@
                     <p class="price">原价 ¥4,468 | 库存531</p>
                     <p>体验卡</p>
                 </div>
-            </router-link>
+            </div>
         </div>
         <van-tabbar v-model="active">
             <van-tabbar-item 
@@ -28,13 +28,25 @@
                 to="/order"
                 icon="van-icon van-icon-todo-list">订单</van-tabbar-item>
         </van-tabbar>
-        <Qrshore/>
+        <div class="btn">
+            <van-button type="primary" size="large" @click="open=true">关注我们</van-button>
+        </div>
+        <div class="guzhu" v-show="open" flex="main:center cross:center">
+            <div class="box" flex="dir:top cross:center">
+                <div class="qr">
+                    <img src="../../style/img/home3.jpg" alt="">
+                </div>
+                <img class="finger" src="../../style/img/home2.jpg" alt="">
+                <p>长按指纹识别二维码</p>
+            </div>
+            <div class="close"  @click="open=false"></div>
+        </div>
     </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import Qrshore from "../../components/Qrshore"
+
 import {
     Swipe,
     SwipeItem,
@@ -60,7 +72,7 @@ export default {
             open: false
         };
     },
-    components:{ Qrshore },
+
     methods: {
         formatPrice() {
             return "¥" + (this.goods.price / 100).toFixed(2);
@@ -124,7 +136,49 @@ export default {
                 }
             }
         }
-
+        .btn{
+            margin:1rem 1.5rem; 
+            >button{
+                border-radius: 5px;
+            }
+        }
+        .guzhu{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color:rgba(#000, .8);
+            z-index: 99;
+            color: #fff;
+            .close{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            .box{
+                background-color:#fff;
+                border-radius: 8px;
+                width: 80%;
+                padding: 1.5em;
+                color: #666;
+                position: relative;
+                z-index: 99;
+                img{
+                    display: block;
+                    width: 3rem;
+                }
+                p{
+                    margin-top: 1.8em;
+                }
+                .finger{
+                    width: 2.5rem;
+                    margin-top: 1em;
+                }
+            }
+        }
     }
 }
 
